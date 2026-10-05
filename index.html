@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Louis Messonnier | Mechanical Engineering Portfolio</title>
+<meta name="description" content="Mechanical engineering portfolio of Louis Messonnier, Georgia Tech.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<!--
+  EDITING NOTES
+  - Yellow boxes (class="todo") are spots for your own words. Replace the text, then remove class="todo".
+  - Images live in images/. To swap one, save yours over it with the SAME filename.
+    A missing image shows a gray box with the filename it expects.
+  - Duke slides: images/duke/slide-1.jpg, slide-2.jpg, ... Change data-count on the deck if you add or remove slides.
+  - PDF version: open in Chrome > Print > Save as PDF, with "Background graphics" on.
+-->
+<script>
+  // Mark missing images so they show their expected filename (runs before images load).
+  window.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG') {
+      var f = t.closest('figure');
+      if (f) { f.classList.add('missing'); f.setAttribute('data-file', t.getAttribute('src')); }
+    }
+  }, true);
+</script>
+<style>
+  :root {
+    --paper: #F7F8F6;
+    --ink: #152433;
+    --muted: #56626E;
+    --rule: #D3D8DC;
+    --gold: #B3A369;
+    --gold-ink: #6E6128;
+    --plate: #ECEEEF;
+    --night: #1D1F26;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-size: 1.0625rem; line-height: 1.58; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--ink); text-decoration-color: var(--gold); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 3px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.5rem); }
+  .todo { background: #FFF0A3; outline: 2px solid #FFF0A3; border-radius: 2px; color: #4A4320; }
+
+  /* Header */
+  .bar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+  .bar .mark { font-weight: 700; font-stretch: 112%; text-decoration: none; }
+  .bar nav { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+  .bar nav a { text-decoration: none; color: var(--muted); }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  .hero h1 { font-stretch: 125%; font-weight: 800; font-size: clamp(2.8rem, 7vw, 5.8rem); line-height: 0.92; letter-spacing: -0.025em; margin: 0 0 1.3rem; }
+  .hero .sub { font-size: 1.2rem; margin: 0 0 0.6rem; }
+  .hero .tagline { max-width: 40ch; margin: 0 0 1.6rem; }
+  .hero .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; }
+  .btn { display: inline-block; background: var(--ink); color: var(--paper); padding: 0.7rem 1.2rem; text-decoration: none; font-weight: 600; border-radius: 3px; }
+  .btn:hover { background: #22384D; }
+  .hero figure { margin: 0; background: var(--night); aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .hero figure img { max-height: 100%; width: auto; }
+  .hero figcaption { color: #9AA3AD; font-size: 0.85rem; }
+
+  /* Project strip */
+  .strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.8rem; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .strip a { text-decoration: none; display: block; }
+  .strip .thumb { aspect-ratio: 1 / 1; background: var(--plate); overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 0.45rem; }
+  .strip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .strip .thumb.contain img { object-fit: contain; padding: 6%; background: #fff; }
+  .strip .thumb.night { background: var(--night); }
+  .strip .thumb.night img { object-fit: contain; }
+  .strip span { font-weight: 600; font-stretch: 100%; font-size: 0.92rem; line-height: 1.25; display: block; }
+  .strip a:hover span { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
+
+  /* Sections */
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--ink); padding-top: 0.9rem; margin: 0 0 1rem; gap: 1rem; }
+  .sec-head h2 { font-stretch: 118%; font-weight: 750; font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0; }
+  .project { padding: clamp(2.2rem, 5vw, 3.8rem) 0; border-top: 1px solid var(--rule); }
+  .project h3 { font-stretch: 118%; font-weight: 750; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 1.1rem; }
+  .project h3 .status { font-size: 0.9rem; font-stretch: 100%; font-weight: 600; letter-spacing: 0; color: var(--gold-ink); border: 1.5px solid var(--gold); padding: 0.1rem 0.5rem; border-radius: 3px; vertical-align: middle; margin-left: 0.5rem; white-space: nowrap; }
+  .project h4 { font-stretch: 110%; font-weight: 700; font-size: 1.25rem; margin: 2rem 0 0.8rem; }
+
+  .spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); margin: 0 0 1.6rem; }
+  .spec div { padding: 0.65rem 1rem 0.75rem 0; }
+  .spec div + div { padding-left: 1rem; border-left: 1px solid var(--rule); }
+  .spec dt { font-stretch: 80%; font-weight: 600; font-size: 0.85rem; color: var(--muted); }
+  .spec dd { margin: 0.15rem 0 0; font-size: 0.97rem; }
+
+  /* Galleries */
+  .g { display: grid; gap: 0.8rem; margin: 0 0 0.8rem; }
+  .g-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g-hero { grid-template-columns: 2fr 1fr; }
+  .g-hero > .big { grid-row: span 2; aspect-ratio: auto; min-height: 320px; }
+  .g-hero.tall-side > .big { aspect-ratio: 4 / 3; grid-row: auto; }
+  .g-hero.tall-side > figure:not(.big) { aspect-ratio: auto; }
+  .g figure { position: relative; margin: 0; background: #fff; border: 1px solid var(--rule); aspect-ratio: 4 / 3; overflow: hidden; }
+  .g figure.wide { aspect-ratio: 16 / 9; }
+  .g figure.sheet { aspect-ratio: 1.414 / 1; }
+  .g figure.night { background: var(--night); border-color: var(--night); }
+  .g figure img { position: absolute; inset: 0; width: 100%; height: calc(100% - 1.9rem); object-fit: contain; padding: 0.4rem; cursor: zoom-in; }
+  .g figure.cover img { object-fit: cover; padding: 0; }
+  .g figcaption { position: absolute; left: 0; right: 0; bottom: 0; height: 1.9rem; line-height: 1.9rem; padding: 0 0.7rem; font-size: 0.85rem; color: var(--muted); background: rgba(255,255,255,0.92); border-top: 1px solid var(--rule); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .g figure.night figcaption { background: rgba(29,31,38,0.92); color: #AEB6BF; border-top-color: #2E3240; }
+  figure.missing { background: var(--plate) !important; border: 1px dashed #A8B0B7 !important; }
+  figure.missing img { display: none; }
+  figure.missing::before { content: "Add image: " attr(data-file); position: absolute; inset: 0 0 1.9rem 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem; font-size: 0.88rem; color: var(--muted); }
+
+  /* Your-words blocks and links */
+  .words { margin: 1.4rem 0 0; }
+  .words p { margin: 0 0 0.9rem; }
+  .links-row { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: 1rem; }
+
+  /* Code */
+  details.code { margin-top: 1.2rem; border: 1px solid var(--rule); background: #fff; }
+  details.code summary { cursor: pointer; padding: 0.7rem 1rem; font-weight: 600; }
+  details.code pre { margin: 0; padding: 1rem; overflow-x: auto; font-size: 0.82rem; line-height: 1.5; background: #F1F3F4; border-top: 1px solid var(--rule); font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+  /* Deck viewer */
+  .deck { border: 1px solid var(--rule); background: #fff; }
+  .deck .stage { position: relative; aspect-ratio: 16 / 9; }
+  .deck .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+  .deck .stage.missing::before { content: "Add slide: " attr(data-file); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted); background: var(--plate); }
+  .deck .controls { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0.7rem; border-top: 1px solid var(--rule); }
+  .deck button { font: inherit; font-weight: 600; background: var(--ink); color: var(--paper); border: 0; border-radius: 3px; padding: 0.45rem 0.95rem; cursor: pointer; }
+  .deck button:disabled { opacity: 0.35; cursor: default; }
+  .deck .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* ME 2016 entries */
+  .sub-entry { margin-top: 2.2rem; }
+  .sub-entry .meta { color: var(--muted); margin: -0.5rem 0 0.8rem; font-size: 0.95rem; }
+
+  /* About */
+  .about { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 5vw, 4rem); }
+  .about p { max-width: 60ch; margin: 0 0 1rem; }
+  .facts { margin: 0; }
+  .facts div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
+  .facts div:first-child { border-top: 1px solid var(--ink); }
+  .facts dt { font-stretch: 80%; font-weight: 600; color: var(--muted); }
+  .facts dd { margin: 0; }
+
+  footer { border-top: 2px solid var(--ink); padding: 1.8rem 0 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer .name { font-stretch: 118%; font-weight: 750; font-size: 1.4rem; margin: 0; }
+  footer .links-row { margin: 0; align-items: center; }
+
+  /* Lightbox */
+  dialog.lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+  dialog.lb::backdrop { background: rgba(10, 16, 24, 0.88); }
+  dialog.lb img { max-width: 96vw; max-height: 86vh; width: auto; height: auto; background: #fff; cursor: zoom-out; }
+  dialog.lb p { color: #E4E7EA; margin: 0.5rem 0 0; font-size: 0.95rem; }
+  dialog.lb button { position: fixed; top: calc(0.8rem + env(safe-area-inset-top, 0px)); right: 0.8rem; font: inherit; font-weight: 600; background: var(--paper); color: var(--ink); border: 0; border-radius: 3px; padding: 0.4rem 0.8rem; cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero figure { max-width: 480px; }
+    .strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .spec { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .spec div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .spec div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g-2, .g-3, .g-hero { grid-template-columns: 1fr; }
+    .g-hero > .big, .g-hero.tall-side > figure { grid-row: auto; aspect-ratio: 4 / 3; min-height: 0; }
+  }
+
+  @media print {
+    @page { size: letter; margin: 0.5in; }
+    body { background: #fff; font-size: 10pt; }
+    .bar nav, .strip, .deck .controls, details.code, dialog { display: none !important; }
+    .hero { padding: 0 0 1rem; grid-template-columns: 1.3fr 1fr; }
+    .hero h1 { font-size: 38pt; }
+    .project, .about { break-before: page; border-top: 0; padding: 0; }
+    .g figure, .deck, .spec { break-inside: avoid; }
+    .sub-entry { break-inside: avoid; }
+    a { text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="bar">
+    <a class="mark" href="#top">Louis Messonnier</a>
+    <nav aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="resume.pdf">Resume</a>
+      <a href="mailto:louismessonnier@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <h1>Louis Messonnier</h1>
+        <p class="sub">Mechanical Engineering, Georgia Tech</p>
+        <p class="tagline">Interested in automotive systems and powertrain design, additive manufacturing and lattice structures, and mechanical testing and simulation.</p>
+        <div class="links">
+          <a class="btn" href="resume.pdf">Download resume</a>
+          <a href="https://www.linkedin.com/in/louismessonnier">LinkedIn</a>
+          <a href="https://github.com/louismessonnier">GitHub</a>
+          <a href="mailto:louismessonnier@gmail.com">louismessonnier@gmail.com</a>
+        </div>
+      </div>
+      <figure>
+        <img src="images/upright/upright-optimized.jpg" alt="Topology-optimized FSAE upright">
+      </figure>
+    </section>
+
+    <nav class="strip" id="projects" aria-label="Projects">
+      <a href="#upright"><div class="thumb night"><img src="images/upright/upright-optimized.jpg" alt=""></div><span>Upright topology optimization</span></a>
+      <a href="#duke"><div class="thumb contain"><img src="images/duke/slide-3.jpg" alt=""></div><span>Gyroid lattice research</span></a>
+      <a href="#gdpad"><div class="thumb"><img src="images/gd/gd-photo-left.jpg" alt=""></div><span>3H6MGD keypad</span></a>
+      <a href="#me2110"><div class="thumb contain"><img src="images/me2110/luma-subsystem.jpg" alt=""></div><span>ME 2110 robot</span></a>
+      <a href="#me2016"><div class="thumb contain"><img src="images/me2016/bvp-temperature.svg" alt=""></div><span>ME 2016 numerical methods</span></a>
+      <a href="#catch-can"><div class="thumb contain"><img src="images/hytech/catchcan-front.png" alt=""></div><span>Catch can holder</span></a>
+      <a href="#macropad"><div class="thumb contain"><img src="images/anki/macropad-iso.jpg" alt=""></div><span>Anki macropad</span></a>
+    </nav>
+
+    <div class="sec-head"><h2>Projects</h2></div>
+
+    <!-- ============ UPRIGHT ============ -->
+    <article class="project" id="upright">
+      <h3>Upright topology optimization <span class="status">In progress</span></h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>HyTech Racing, Georgia Tech Formula SAE</dd></div>
+        <div><dt>When</dt><dd>Summer 2026 – Present</dd></div>
+        <div><dt>Role</dt><dd>Powertrain engineer</dd></div>
+        <div><dt>Tools</dt><dd>nTop, CATIA, MATLAB</dd></div>
+      </dl>
+      <div class="g g-3">
+        <figure class="night"><img src="images/upright/upright-envelope.png" alt="Upright design envelope"><figcaption>Design envelope</figcaption></figure>
+        <figure class="night"><img src="images/upright/upright-optimized.jpg" alt="Topology-optimized upright"><figcaption>Topology optimization result</figcaption></figure>
+        <figure class="night"><img src="images/upright/upright-lightweighted.png" alt="Lightweighted upright"><figcaption>Original lightweighted upright</figcaption></figure>
+      </div>
+      <div class="words"><p>I am in the process of building an nTop topology optimization workflow for the vehicle's front upright, 
+        with the goal of generating a lightweighted upright suitable for additive manufacturing in Ti-6Al-4V. The workflow defines 
+        the preserved interfaces and boundary conditions, with loads and restraints for five combined load cases. Before optimizing, 
+        I validated the nTop model against the existing FEAs by matching von Mises stress and displacement.</p></div>
+    </article>
+
+    <!-- ============ DUKE ============ -->
+    <article class="project" id="duke">
+      <h3>Anisotropic gyroid lattices</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>Duke University, Mechanical Engineering & Materials Science</dd></div>
+        <div><dt>When</dt><dd>Summer 2025</dd></div>
+        <div><dt>Role</dt><dd>Undergraduate research assistant, self-guided study</dd></div>
+        <div><dt>Tools</dt><dd>nTop, SLA printing (Formlabs Form 4), MATLAB, Excel, Ansys Mechanical</dd></div>
+      </dl>
+      <div class="deck" data-path="images/duke/slide-" data-count="6" data-ext=".jpg">
+        <div class="stage"><img src="images/duke/slide-1.jpg" alt="Slide 1 of the gyroid study presentation"></div>
+        <div class="controls">
+          <button type="button" data-dir="-1" aria-label="Previous slide">Previous</button>
+          <span class="count" aria-live="polite">1 / 6</span>
+          <button type="button" data-dir="1" aria-label="Next slide">Next</button>
+        </div>
+      </div>
+      <div class="words"><p>I planned and carried out a self-guided study on the mechanical behavior of anisotropic gyroid unit 
+        cells under tensile and compressive loading. I performed an extensive literature review on TPMS lattices, porous 
+        biomaterial mechanics, and bone-implant interface behavior in order to develop background knowledge on the area. For the 
+        study, I produced and tested 128 SLA-printed samples across two load types, two stretch directions, four stretch ratios, 
+        and two base unit cell sizes. Then, I processed the data in MATLAB and Excel. Stretching unit cells parallel to the loading 
+        direction increased Young's modulus while holding ultimate tensile strength steady, whereas perpendicular stretch reduced 
+        Young's modulus and ultimate tensile strength.</p></div>
+    </article>
+
+    <!-- ============ GD PAD ============ -->
+    <article class="project" id="gdpad">
+      <h3>3H6MGD analog keypad</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>Personal project</dd></div>
+        <div><dt>When</dt><dd>Summer 2026</dd></div>
+        <div><dt>Role</dt><dd>Designed and built solo</dd></div>
+        <div><dt>Tools</dt><dd>KiCad, SolidWorks, 3D printing, soldering, libhmk firmware</dd></div>
+      </dl>
+      <div class="g g-hero">
+        <figure class="big cover"><img src="images/gd/gd-photo-left.jpg" alt="Finished 3H6MGD keypad"><figcaption>Finished keypad</figcaption></figure>
+        <figure class="cover"><img src="images/gd/gd-photo-right.jpg" alt="Finished keypad, side view"><figcaption>Finished keypad</figcaption></figure>
+        <figure><img src="images/gd/pcb_3d_front.jpg" alt="PCB render, front"><figcaption>PCB, front</figcaption></figure>
+      </div>
+      <div class="g g-3">
+        <figure><img src="images/gd/pcb_3d_back.jpg" alt="PCB render, back"><figcaption>PCB, back</figcaption></figure>
+        <figure><img src="images/gd/pcb_layout_front.png" alt="PCB layout in KiCad"><figcaption>PCB layout</figcaption></figure>
+        <figure><img src="images/gd/gd-assembly.jpg" alt="Case assembly CAD"><figcaption>Case assembly</figcaption></figure>
+      </div>
+      <div class="g">
+        <figure class="sheet"><img src="images/gd/gd-keypad_schematic_whole.svg" alt="Full schematic of the 3H6MGD keypad"><figcaption>Schematic (click to enlarge)</figcaption></figure>
+      </div>
+      <div class="words"><p>This project is a custom analog macropad for Geometry Dash, built around magnetic Hall-effect switches. 
+        It has three analog jump keys alongside six mechanical keys and a rotary encoder for volume control. Because Hall-effect 
+        switches measure how far a key has traveled, the actuation point is adjustable, so you can choose exactly how far down 
+        counts as a press.</p>
+        <p>I designed the PCB in KiCad around an AT32F405 microcontroller utilizing its high-speed USB for 8kHz USB polling to 
+          minimize input delay for the linear Hall sensors under each analog switch. I also designed the case, assembled the board, 
+          and modified open-source libhmk firmware to add support for the mechanical switches and rotary encoder.</p></div>
+      <div class="links-row"><a href="https://github.com/louismessonnier/3H6MGD">Full write-up on GitHub</a></div>
+    </article>
+
+    <!-- ============ ME 2110 ============ -->
+    <article class="project" id="me2110">
+      <h3>ME 2110 competition robot</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>Georgia Tech, ME 2110 Creative Decisions and Design</dd></div>
+        <div><dt>When</dt><dd>Spring 2026</dd></div>
+        <div><dt>Role</dt><dd>Luma subsystem lead, team of four</dd></div>
+        <div><dt>Tools</dt><dd>SolidWorks, Arduino (C++), pneumatics, IR sensing, 3D printing</dd></div>
+      </dl>
+      <div class="g g-hero">
+        <figure class="big"><img src="images/me2110/luma-subsystem.jpg" alt="Luma deposit subsystem render"><figcaption>Luma deposit subsystem</figcaption></figure>
+        <figure><img src="images/me2110/robot-idle.jpg" alt="Robot in stowed position"><figcaption>Robot, stowed</figcaption></figure>
+        <figure><img src="images/me2110/robot-extended.jpg" alt="Robot in deployed position"><figcaption>Robot, deployed</figcaption></figure>
+      </div>
+      <div class="g g-2">
+        <figure class="sheet"><img src="images/me2110/drawing-exploded-bom.png" alt="Exploded assembly drawing with bill of materials"><figcaption>Exploded assembly with BOM</figcaption></figure>
+        <figure class="sheet"><img src="images/me2110/drawing-holder.png" alt="Dimensioned drawing of Luma holder"><figcaption>Luma holder drawing</figcaption></figure>
+      </div>
+      <div class="words"><p>Our team of four members designed and fabricated a robot for a Super Mario Galaxy themed competition. 
+        I was responsible for the Stabilize Galaxy Reactor subsystem, which deposits the Lumas into the Galaxy Reactor. For my 
+        system the Lumas were held in boxes to ensure proper orientation and prevent jamming, a holder fed them to the correct 
+        position, and they were deposited by a pneumatic piston.</p>
+        <p>The piston was controlled by detectRotation, a helper function that used an IR sensor to detect two passing receptacle 
+          walls and record the time between them. The main code then divided that time by two to find when the center of a 
+          receptacle was in front of the robot.</p></div>
+      <details class="code">
+        <summary>View detectRotation.cpp</summary>
+        <pre><code>#include &lt;myDuino.h&gt;
+#include &quot;detectRotation.h&quot;
+
+extern myDuino robot;
+
+// -------------------- SETTINGS (TO TUNE) --------------------
+extern int sidePassingThreshold;
+unsigned long sampleInterval = 50;
+unsigned long printInterval = 200;
+unsigned long minWallGap = 1000;
+
+// -------------------- RESTING VARIABLES --------------------
+unsigned long previousMillis = 0;
+unsigned long lastPrintTime = 0;
+unsigned long firstWallTime = 0;
+
+bool lastWallState = false;
+bool firstWallSeen = false;
+bool measurementDone = false;
+
+unsigned long segmentTime = 0;
+
+// -------------------- RESET HELPER FUNCTION --------------------
+// helper function to be used in main code to reset detectRotation variables
+void resetDetectRotation() {
+  previousMillis = 0;
+  lastPrintTime = 0;
+  firstWallTime = 0;
+
+  lastWallState = false;
+  firstWallSeen = false;
+  measurementDone = false;
+
+  segmentTime = 0;
+}
+
+// -------------------- DETECT ROTATION FUNCTION --------------------
+unsigned long detectRotation() {
+  unsigned long currentMillis = millis();
+
+  // only sample every sampleInterval ms
+  if (currentMillis - previousMillis &lt; sampleInterval) {
+    return 0;
+  }
+
+  previousMillis = currentMillis;
+
+  int sensorValue = robot.readIR();
+
+  if (currentMillis - lastPrintTime &gt;= printInterval) {
+    lastPrintTime = currentMillis;
+    Serial.print(&quot;IR: &quot;);
+    Serial.println(sensorValue);
+  }
+
+  bool currentWallState = (sensorValue &gt; sidePassingThreshold);
+
+  // rising edge means wall just started
+  if (currentWallState &amp;&amp; !lastWallState) {
+
+    // this wall is the first wall
+    if (!firstWallSeen) {
+      firstWallSeen = true;
+      firstWallTime = currentMillis;
+      Serial.println(&quot;=== FIRST WALL DETECTED ===&quot;);
+    }
+
+    // this wall is the second wall (also ensure that measuremnt is reasonable)
+    else if (!measurementDone &amp;&amp; (currentMillis - firstWallTime &gt;= minWallGap)) {
+      segmentTime = currentMillis - firstWallTime;
+      measurementDone = true;
+
+      Serial.println(&quot;=== SECOND WALL DETECTED ===&quot;);
+      Serial.print(&quot;Segment time: &quot;);
+      Serial.println(segmentTime);
+    }
+    else {
+      Serial.println(&quot;Ignored false wall detection&quot;); // false wall detection because measured gap was 
+    }
+  }
+
+  lastWallState = currentWallState;
+
+  // return result
+  if (measurementDone) {
+    unsigned long result = segmentTime;
+    segmentTime = 0; // reset immediately
+    return result;
+  }
+
+  return 0;
+}</code></pre>
+      </details>
+    </article>
+
+    <!-- ============ ME 2016 ============ -->
+    <article class="project" id="me2016">
+      <h3>ME 2016 numerical methods</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>Georgia Tech, ME 2016 Computing Techniques</dd></div>
+        <div><dt>When</dt><dd>Fall 2025</dd></div>
+        <div><dt>Role</dt><dd>Individual coursework</dd></div>
+        <div><dt>Tools</dt><dd>MATLAB</dd></div>
+      </dl>
+
+      <h4>Final project: thermal rod boundary-value problem</h4>
+      <div class="g g-2">
+        <figure><img src="images/me2016/bvp-temperature.svg" alt="Temperature along the rod at three mesh resolutions"><figcaption>Temperature along the rod at 5, 100, and 500 nodes</figcaption></figure>
+        <figure><img src="images/me2016/bvp-roots.svg" alt="Zoomed view of where each fit reaches 60 degrees C"><figcaption>Where each fit reaches 60 °C</figcaption></figure>
+      </div>
+      <div class="words"><p>In this project, I analyzed a slender rod that forms a critical part of a thermal control assembly 
+        to calculate the temperature along the rod by solving the boundary value problem for the steady-state temperature 
+        distribution. To find the most efficient numerical method, the ODE was solved using coarse, medium, and high-resolution 
+        cases of 5 nodes, 100 nodes, and 500 nodes. After computing the solutions to the ODE, at each resolution, a quadratic 
+        curve was generated to fit each data set to enable root finding. Then, using the coefficients of the fitted quadratic 
+        curves, the roots of each resultion were computed with the quadratic formula. As shown, the medium and high-resolution 
+        cases were nearly identical, and so mny recommendation was to use the medium resolution model to reduce required
+        computational workload.</p></div>
+
+      <div class="sub-entry">
+        <h4>Thermistor calibration curve fitting project</h4>
+        <div class="g g-2">
+          <figure><img src="images/me2016/thermistor-fits.svg" alt="Three curve fits to thermistor data"><figcaption>Regression, Newton interpolation, and cubic spline</figcaption></figure>
+          <div class="words" style="margin-top:0"><p>In this project, I analyzed a set of thermistor calibration data to compare 
+            three curve fittin approaches: (1) quadratic least squares regression, (2) Newton's divided difference interpolation, 
+            and (3) natural cubic spline. The quadratic least-squares regression provided the most pratical and stable 
+            approximation for resistance values.</p></div>
+        </div>
+      </div>
+
+      <div class="sub-entry">
+        <h4>Coolant flow rate for an 80 °C processor project</h4>
+        <div class="g g-2">
+          <figure class="wide"><img src="images/me2016/flow-fits.svg" alt="Polynomial fits and residuals for coolant flow data"><figcaption>Polynomial fits and residuals</figcaption></figure>
+          <div class="words" style="margin-top:0"><p>Here, I fit polynomials of degrees 1, 2 and 3, to experimental data for 
+          high-performance processors to develop a model for temeprature variation with coolant flow rate and determin the flow
+          rate that kept the processor at a target temperature of 80 °C. The third degree polynomial regression model provided the 
+          best fit for the noisy data with an R² value of 0.99858 and an RMSE value of 0.09272 °C. Bisection and secant methods of 
+          root finding that I coded converged to the same root (1.6267 L/s) as MATLAB's roots() function, confirming the accuracy of
+          the procedure.</p></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ CATCH CAN ============ -->
+    <article class="project" id="catch-can">
+      <h3>Catch can holder</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>HyTech Racing, Georgia Tech Formula SAE</dd></div>
+        <div><dt>When</dt><dd><span>Spring 2025</span></dd></div>
+        <div><dt>Role</dt><dd>Powertrain engineer</dd></div>
+        <div><dt>Tools</dt><dd>CATIA, 3D printing</dd></div>
+      </dl>
+      <div class="g g-2">
+        <figure><img src="images/hytech/catchcan-front.png" alt="Catch can holder, front"><figcaption>Front</figcaption></figure>
+        <figure><img src="images/hytech/catchcan-back.png" alt="Catch can holder, back"><figcaption>Back</figcaption></figure>
+      </div>
+      <div class="words"><p>I designed, prototyped, and finalized a holder for the cooling system's catch can using CATIA and 
+        3D printing. It was then installed on the vehicle for use in testing and competition.</p></div>
+    </article>
+
+    <!-- ============ ANKI MACROPAD ============ -->
+    <article class="project" id="macropad">
+      <h3>Anki macropad</h3>
+      <dl class="spec">
+        <div><dt>Where</dt><dd>Personal project</dd></div>
+        <div><dt>When</dt><dd>Summer 2026</dd></div>
+        <div><dt>Role</dt><dd>Designed solo</dd></div>
+        <div><dt>Tools</dt><dd>KiCad, RP2040, QMK, SolidWorks, JLCPCB</dd></div>
+      </dl>
+      <div class="g g-hero tall-side">
+        <figure class="big"><img src="images/anki/macropad-iso.jpg" alt="Macropad assembly render"><figcaption>Assembly</figcaption></figure>
+        <figure><img src="images/anki/macropad-exploded.jpg" alt="Exploded view of the macropad"><figcaption>Exploded view</figcaption></figure>
+      </div>
+      <div class="g g-3">
+        <figure><img src="images/anki/pcb-layout.png" alt="PCB layout with dimensions"><figcaption>PCB layout</figcaption></figure>
+        <figure><img src="images/anki/pcb-traces_back.png" alt="Back copper traces and fills"><figcaption>Back copper and fills</figcaption></figure>
+        <figure><img src="images/anki/schematic_RP2040-hardware.png" alt="RP2040 hardware schematic"><figcaption>RP2040 schematic</figcaption></figure>
+      </div>
+      <div class="words"><p>This project is a custom 6 key macropad for Anki, a flashcard app, with keys for rating, flipping, 
+        and editing cards. Instead of using a pre built developer board, I integrated an RP2040 microcontroller directly onto a 
+        PCB, which allowed me to have full control over board dimensions, USB port placement, and component layout.</p>
+        <p>I designed the schematic and PCB in KiCad, designed the case in SolidWorks,
+           and configured the firmware in QMK.</p></div>
+      <div class="links-row"><a href="https://github.com/louismessonnier/anki-macropad">Full write-up on GitHub</a></div>
+    </article>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about" aria-labelledby="about-h">
+      <div class="sec-head"><h2 id="about-h">About</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I am a third-year mechanical engineering student at Georgia Tech motivated by my desire to design and develop mechanical systems. I am eager to develop engineering skills through hands-on testing, 3D modeling, and real-world projects. Currently, I am gaining practical experience in 3D modeling and applying engineering principles in collaborative, project-based settings. I am minoring in materials science and engineering.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Education</dt><dd>B.S. Mechanical Engineering, Georgia Tech, Minor in Materials Science and Engineering.</dd></div>
+          <div><dt>CAD</dt><dd>SolidWorks, CATIA, nTop, KiCad</dd></div>
+          <div><dt>Simulation</dt><dd>Ansys Mechanical, nTop</dd></div>
+          <div><dt>Programming</dt><dd>MATLAB, Arduino</dd></div>
+          <div><dt>Fabrication</dt><dd>SLA and FDM printing, mechanical testing</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="name">Louis Messonnier</p>
+    <div class="links-row">
+      <a href="mailto:louismessonnier@gmail.com">louismessonnier@gmail.com</a>
+      <a href="https://www.linkedin.com/in/louismessonnier">LinkedIn</a>
+      <a href="https://github.com/louismessonnier">GitHub</a>
+      <a href="resume.pdf">Resume</a>
+    </div>
+  </footer>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Enlarged image">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+  // Catch images that failed before the listener above could see them
+  document.querySelectorAll('figure img').forEach(function (img) {
+    if (img.complete && img.naturalWidth === 0) {
+      var f = img.closest('figure');
+      f.classList.add('missing'); f.setAttribute('data-file', img.getAttribute('src'));
+    }
+  });
+  // Thumbnails in the project strip: hide missing ones quietly
+  document.querySelectorAll('.strip img').forEach(function (img) {
+    img.addEventListener('error', function () { img.style.visibility = 'hidden'; });
+    if (img.complete && img.naturalWidth === 0) img.style.visibility = 'hidden';
+  });
+
+  // Lightbox
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+  function openLb(src, alt, cap) {
+    if (!lb.showModal) { window.open(src, '_blank'); return; }
+    lbImg.src = src; lbImg.alt = alt || ''; lbCap.textContent = cap || '';
+    lb.showModal();
+  }
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest('.g figure img, .deck .stage img');
+    if (!img) return;
+    var fig = img.closest('figure');
+    var cap = fig && fig.querySelector('figcaption') ? fig.querySelector('figcaption').textContent : img.alt;
+    openLb(img.currentSrc || img.src, img.alt, cap);
+  });
+  lb.addEventListener('click', function (e) { if (e.target !== lbCap) lb.close(); });
+  document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+
+  // Slide deck viewer
+  document.querySelectorAll('.deck').forEach(function (deck) {
+    var n = parseInt(deck.dataset.count, 10), i = 1;
+    var path = deck.dataset.path, ext = deck.dataset.ext || '.jpg';
+    var stage = deck.querySelector('.stage'), img = stage.querySelector('img');
+    var count = deck.querySelector('.count');
+    var prev = deck.querySelector('[data-dir="-1"]'), next = deck.querySelector('[data-dir="1"]');
+    img.addEventListener('error', function () { stage.classList.add('missing'); stage.setAttribute('data-file', img.getAttribute('src')); });
+    img.addEventListener('load', function () { stage.classList.remove('missing'); });
+    function show(k) {
+      i = Math.min(Math.max(k, 1), n);
+      img.src = path + i + ext; img.alt = 'Slide ' + i + ' of ' + n;
+      count.textContent = i + ' / ' + n;
+      prev.disabled = i === 1; next.disabled = i === n;
+    }
+    prev.addEventListener('click', function () { show(i - 1); });
+    next.addEventListener('click', function () { show(i + 1); });
+    deck.tabIndex = 0;
+    deck.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { show(i - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(i + 1); e.preventDefault(); }
+    });
+    for (var k = 2; k <= n; k++) { var p = new Image(); p.src = path + k + ext; }
+    show(1);
+  });
+</script>
+</body>
+</html>
